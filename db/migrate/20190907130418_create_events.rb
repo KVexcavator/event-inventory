@@ -7,7 +7,7 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.string :location
       t.text :agenda
       t.text :address
-      t.integer :organized_id
+      t.integer :user_id
 
       t.timestamps
     end

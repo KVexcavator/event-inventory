@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_09_07_135519) do
     t.string "location"
     t.text "agenda"
     t.text "address"
-    t.integer "organized_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
