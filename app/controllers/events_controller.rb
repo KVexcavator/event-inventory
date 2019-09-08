@@ -63,6 +63,15 @@ class EventsController < ApplicationController
   end
 
   private
+    #authenticate users using devise and check if the current user
+    # def event_owner!
+    #   authenticate_user!
+    #   if @event.user_id != current_user.id
+    #     redirect_to events_path
+    #     flash[:notice] = 'You do not have enough
+    #     permissions to do this'
+    #   end
+    # end
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
