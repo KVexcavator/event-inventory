@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :event_owner!, only: [:edit,:update,:destroy]
   before_action :authenticate_user!, only: [:new, :edit, :create,:update, :destroy]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -64,14 +65,13 @@ class EventsController < ApplicationController
 
   private
     #authenticate users using devise and check if the current user
-    # def event_owner!
-    #   authenticate_user!
-    #   if @event.user_id != current_user.id
-    #     redirect_to events_path
-    #     flash[:notice] = 'You do not have enough
-    #     permissions to do this'
-    #   end
-    # end
+    def event_owner!
+      authenticate_user!
+      if Event.find(params[:id]).user != current_user
+        redirect_to events_path
+        flash[:notice] = 'You do not have enough permissions to do this'
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
