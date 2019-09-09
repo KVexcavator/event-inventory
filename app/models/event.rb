@@ -21,4 +21,8 @@ class Event < ApplicationRecord
   def self.tagged_with(name)
     Tag.find_by_name!(name).events
   end
+  # count the number of tags associated with all the events
+  def self.tag_counts
+    Tag.select("tags.name, count(taggings.tag_id) as count").joins(:taggings).group("taggings.tag_id")
+  end
 end
