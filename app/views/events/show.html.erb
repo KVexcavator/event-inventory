@@ -34,7 +34,10 @@
   <strong>Organized by:</strong>
   <%= @event.user.email %>
 </p>
-
+<p>
+  <strong>Tags:</strong>
+  <%= @event.all_tags %>
+</p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

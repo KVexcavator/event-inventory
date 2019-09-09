@@ -67,7 +67,7 @@ class EventsController < ApplicationController
     #authenticate users using devise and check if the current user
     def event_owner!
       authenticate_user!
-      if Event.find(params[:id]).user != current_user
+      if Event.friendly.find(params[:id]).user != current_user
         redirect_to events_path
         flash[:notice] = 'You do not have enough permissions to do this'
       end
@@ -77,8 +77,11 @@ class EventsController < ApplicationController
       @event = Event.friendly.find(params[:id])
     end
 
+    # tags list
+    
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :start_date, :end_date, :location, :agenda, :address, :user_id)
+      params.require(:event).permit(:title, :start_date, :end_date, :location, :agenda, :address, :user_id, :all_tags)
     end
 end
