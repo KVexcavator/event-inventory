@@ -31,9 +31,11 @@
 </p>
 
 <p>
-  <strong>Organized by:</strong>
-  <%= @event.user.email %>
+  <strong>Organized By:</strong><br>
+  <%= @event_owners.email %><br>
+  <%= image_tag avatar_url(@event_owners) %>
 </p>
+
 <p>
   <strong>Tags:</strong>
   <% @event.all_tags.split(", ").map do |t| %>

@@ -25,4 +25,8 @@ class Event < ApplicationRecord
   def self.tag_counts
     Tag.select("tags.name, count(taggings.tag_id) as count").joins(:taggings).group("taggings.tag_id")
   end
+  # find the event owner
+  def self.event_owner(user_id)
+    User.find_by id: user_id
+  end
 end
