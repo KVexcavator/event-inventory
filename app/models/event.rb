@@ -17,4 +17,8 @@ class Event < ApplicationRecord
   def all_tags
     tags.map(&:name).join(", ")
   end
+  # search the tagged events
+  def self.tagged_with(name)
+    Tag.find_by_name!(name).events
+  end
 end

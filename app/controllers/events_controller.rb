@@ -6,7 +6,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if params[:tag]
+      @events = Event.tagged_with(params[:tag])
+    else
+      @events = Event.all
+    end
   end
 
   # GET /events/1
@@ -72,12 +76,11 @@ class EventsController < ApplicationController
         flash[:notice] = 'You do not have enough permissions to do this'
       end
     end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.friendly.find(params[:id])
     end
-
-    # tags list
     
 
     # Never trust parameters from the scary internet, only allow the white list through.
