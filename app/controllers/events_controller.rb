@@ -68,6 +68,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def join
+    @attendance = Attendance.join_event(current_user.id, params[:event_id], 'request_sent')
+    'Request Sent' if @attendance.save
+    respond_with @attendance
+  end
+
   private
     #authenticate users using devise and check if the current user
     def event_owner!

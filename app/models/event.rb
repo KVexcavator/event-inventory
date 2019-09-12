@@ -1,6 +1,9 @@
 class Event < ApplicationRecord
   belongs_to :user, inverse_of: 'organized_events'
 
+  has_many :attendances
+  has_many :users, :through => :attendances
+
   has_many :taggings
   has_many :tags, through: :taggings
 
