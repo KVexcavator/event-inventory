@@ -70,8 +70,9 @@ class EventsController < ApplicationController
 
   def join
     @attendance = Attendance.join_event(current_user.id, params[:event_id], 'request_sent')
-    'Request Sent' if @attendance.save
-    respond_with @attendance
+    if @attendance.save
+      redirect_to Event.find(params[:event_id]), notice: 'Request Sent'
+    end
   end
 
   private
