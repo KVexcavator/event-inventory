@@ -21,6 +21,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 # create pretty URLs
 gem 'friendly_id', '~> 5.2.4'
+# workflow state
+gem 'workflow', '~> 2.0'
+gem 'workflow-activerecord', '>= 4.1pre', '< 6.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

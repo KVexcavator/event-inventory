@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_144924) do
+ActiveRecord::Schema.define(version: 2019_09_12_210911) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer "user_id"
     t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "state"
+    t.string "workflow_state"
   end
 
   create_table "events", force: :cascade do |t|

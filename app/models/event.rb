@@ -32,4 +32,9 @@ class Event < ApplicationRecord
   def self.event_owner(user_id)
     User.find_by id: user_id
   end
+
+  # display the requests for the event owner
+  def self.pending_requests(event_id)
+    Attendance.where(event_id: event_id, workflow_state: 'request_sent')
+  end
 end

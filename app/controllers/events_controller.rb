@@ -67,12 +67,26 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  # GET events/join
   def join
     @attendance = Attendance.join_event(current_user.id, params[:event_id], 'request_sent')
     if @attendance.save
       redirect_to Event.find(params[:event_id]), notice: 'Request Sent'
     end
+  end
+  # GET events/accept_request
+  def accept_request
+    @attendance = Attendance.find_by(id: params[:attendance_id]) rescue nil
+    @attendance.accept!
+    if @attendance.save
+      redirect_to Event.find(params[:event_id]), notice: 'Applicant Accepted'
+    end
+  end
+  # GET events/reject_request
+  def reject_request
+    @attendance = Attendance.where(params[:attendance_id]) rescue nil
+    @attendance.reject
+    redirect_to Event.find(params[:event_id]), notice: 'Applicant Rejected'
   end
 
   private
